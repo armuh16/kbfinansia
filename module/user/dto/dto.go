@@ -10,6 +10,18 @@ import (
 
 type FindRequest model.Users
 
+// type FindRequestTenor model.Tenor
+type FindRequestTenor struct {
+	ID int
+}
+
+func (d *FindRequestTenor) Validate() error {
+	if d.ID <= 0 {
+		return fmt.Errorf(static.EmptyValue, "TenorID")
+	}
+	return nil
+}
+
 type CreateRequest struct {
 	UserID       int
 	Nik          int
@@ -62,10 +74,11 @@ func (d *CreateRequest) Validate() error {
 
 type SetLimitsRequest struct {
 	UserID int
-	Limits []UpdateLimit
+	Limits []CreateRequestLimit
 }
 
-type UpdateLimit struct {
+// Request Limit to upgrade
+type CreateRequestLimit struct {
 	UserID  int
 	AdminID int
 	Tenor   int
@@ -73,13 +86,13 @@ type UpdateLimit struct {
 	RoleID  enum.RoleType
 }
 
-func (d *UpdateLimit) Validate() error {
+func (d *CreateRequestLimit) Validate() error {
 	if d.UserID <= 0 {
 		return fmt.Errorf(static.EmptyValue, "UserID")
 	}
-	if d.AdminID <= 0 {
-		return fmt.Errorf(static.EmptyValue, "AdminID")
-	}
+	//if d.AdminID <= 0 {
+	//	return fmt.Errorf(static.EmptyValue, "AdminID")
+	//}
 	if d.Tenor <= 0 {
 		return fmt.Errorf(static.EmptyValue, "Tenor")
 	}
@@ -89,8 +102,19 @@ func (d *UpdateLimit) Validate() error {
 	if err := d.RoleID.IsValid(); err != nil {
 		return err
 	}
-	if d.RoleID != enum.RoleTypeUser {
+	if d.RoleID != enum.RoleTypeAdmin {
 		return errors.New(static.Authorization)
+	}
+	return nil
+}
+
+type FindAllRequest struct {
+	UserID int
+}
+
+func (d *FindAllRequest) Validate() error {
+	if d.UserID <= 0 {
+		return fmt.Errorf(static.EmptyValue, "UserID")
 	}
 	return nil
 }

@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+
+  db:
+    container_name: db
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=kbfinansia
+      - MYSQL_DATABASE=kbfinansia
+
+  kbfinansia:
+    container_name: kreditplus
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: on-failure
+    depends_on:
+      - db
+    ports:
+      - 8090:8090
+    env_file:
+      - ./config.env

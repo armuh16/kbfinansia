@@ -15,9 +15,8 @@ type ClaimData struct {
 }
 
 type InternalClaimData struct {
-	UserID  int           `json:"user_id,omitempty"`
-	AdminID int           `json:"user_id,omitempty"`
-	Role    enum.RoleType `json:"role,omitempty"`
+	UserID int           `json:"user_id,omitempty"`
+	Role   enum.RoleType `json:"role,omitempty"`
 }
 
 // Claim struct
