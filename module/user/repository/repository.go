@@ -16,6 +16,7 @@ type IUserRepository interface {
 	Find(context.Context, *model.Users) (*model.Users, error)
 	Create(context.Context, *model.UserDetails, *gorm.DB) (*int, error)
 	CreateLimit(context.Context, *model.Tenor, *gorm.DB) (*int, error)
+	FindAll(context.Context, *model.Tenor) ([]*model.Tenor, error)
 }
 
 type UserRepository struct {
@@ -58,4 +59,23 @@ func (r *UserRepository) CreateLimit(ctx context.Context, reqData *model.Tenor, 
 		return nil, err
 	}
 	return &reqData.ID, nil
+}
+
+// FindAll
+func (l *UserRepository) FindAll(ctx context.Context, reqData *model.Tenor) ([]*model.Tenor, error) {
+	tenor := []*model.Tenor{}
+
+	if err := l.Database.Gorm.WithContext(ctx).Model(&model.Tenor{}).
+		Preload("User", func(db *gorm.DB) *gorm.DB {
+			return db.Unscoped()
+		}).
+		Where("user_id = ?", reqData.UserID).
+		Order("id desc").
+		Find(&tenor).
+		Error; err != nil {
+		l.Logger.Error(err)
+		return nil, err
+	}
+
+	return tenor, nil
 }

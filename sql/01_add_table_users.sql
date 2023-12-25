@@ -12,7 +12,8 @@ create table users (
 );
 
 insert into users(name, password, email, role) values ('Admin','$2a$12$yT.dJTZnu4FRJq9zXw0mBOA/xmZHJPVi5ni13Zk9Pn6E0QmwKkZTu','admin@mail.com',1);
-insert into users(name, password, email, role) values ('Users','$2a$12$yT.dJTZnu4FRJq9zXw0mBOA/xmZHJPVi5ni13Zk9Pn6E0QmwKkZTu','user@mail.com',2);
+insert into users(name, password, email, role) values ('Budi','$2a$12$yT.dJTZnu4FRJq9zXw0mBOA/xmZHJPVi5ni13Zk9Pn6E0QmwKkZTu','user1@mail.com',2);
+insert into users(name, password, email, role) values ('Annisa','$2a$12$yT.dJTZnu4FRJq9zXw0mBOA/xmZHJPVi5ni13Zk9Pn6E0QmwKkZTu','user2@mail.com',2);
 
 -- +goose Down
 drop table users;

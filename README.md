@@ -1,6 +1,6 @@
 # KB FINANSIA HOME TEST
 
-Project ini menggunakan bahasa program golang & database postgres
+Project ini menggunakan bahasa program golang & database mysql
 
 ## Installation
 

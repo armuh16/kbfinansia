@@ -8,13 +8,12 @@ import (
 )
 
 type Users struct {
-	ID         int
-	Name       string
-	Email      string
-	Password   string        `json:"-"`
-	Role       enum.RoleType `json:"-"`
-	UserDetail UserDetails   `json:"UserDetail" gorm:"foreignKey:UserID;references:ID;"`
-	Limit      []Tenor       `json:"-" gorm:"foreignKey:UserID;references:ID;"`
+	ID       int `json:"-" gorm:"primaryKey"`
+	Name     string
+	Email    string
+	Password string        `json:"-"`
+	Role     enum.RoleType `json:"-"`
+	//UserDetail UserDetails   `json:"UserDetail,omitempty" gorm:"foreignKey:UserID;references:ID;"`
 
 	CreatedAt time.Time
 	UpdatedAt time.Time
