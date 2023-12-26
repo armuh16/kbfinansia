@@ -22,7 +22,6 @@ type Tenor struct {
 	User       *Users       `json:",omitempty" gorm:"<-:false;foreignKey:UserID;references:ID;"`
 	UserDetail *UserDetails `json:",omitempty" gorm:"<-:false;foreignKey:UserID;references:ID;"`
 	Asset      *Assets      `json:",omitempty" gorm:"<-:false;foreignKey:TenorID;references:ID;"`
-	//Admin *Users `json:",omitempty" gorm:"<-:false;foreignKey:AdminID;references:ID;"`
 }
 
 func (j Tenor) Value() (driver.Value, error) {

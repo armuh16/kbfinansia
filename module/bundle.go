@@ -29,7 +29,6 @@ var BundleRoute = fx.Options(
 var BundleLogic = fx.Options(
 	fx.Provide(userLogic.NewLogic),
 	fx.Provide(transactionLogic.NewLogic),
-	//fx.Provide(productLogic.NewLogic),
 	fx.Provide(authLogic.NewLogic),
 )
 
@@ -37,5 +36,4 @@ var BundleLogic = fx.Options(
 var BundleRepository = fx.Options(
 	fx.Provide(userRepository.NewRepository),
 	fx.Provide(transactionRepository.NewRepository),
-	//fx.Provide(productRepository.NewRepository),
 )

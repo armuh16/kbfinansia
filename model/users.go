@@ -13,7 +13,6 @@ type Users struct {
 	Email    string
 	Password string        `json:"-"`
 	Role     enum.RoleType `json:"-"`
-	//UserDetail UserDetails   `json:"UserDetail,omitempty" gorm:"foreignKey:UserID;references:ID;"`
 
 	CreatedAt time.Time
 	UpdatedAt time.Time

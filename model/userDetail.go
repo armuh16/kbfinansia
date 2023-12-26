@@ -23,7 +23,6 @@ type UserDetails struct {
 	UserPhoto    string // storing as url
 
 	// Relation
-	//Asset []Assets `json:"Assets" gorm:"foreignKey:UserDetailID;references:ID;"`
 	User  *Users `json:",omitempty" gorm:"<-:false;foreignKey:UserID;references:ID;"`
 	Tenor *Tenor `json:",omitempty" gorm:"<-:false;foreignKey:UserID;references:ID;"`
 
