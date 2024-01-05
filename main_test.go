@@ -48,7 +48,7 @@ func TestTransaction(t *testing.T) {
 
 	t.Run("FailCreateOrderInvalidData", func(t *testing.T) {
 		req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(`{
-			"tenorID": 3,
+			"tenorID": 1,
 			"contractNumber" : 123456789,
 			"onTheRoad": 100000000,
     		"adminFee": 1000000,
@@ -65,7 +65,7 @@ func TestTransaction(t *testing.T) {
 
 		ctx := c.Request().Context()
 		ctx = context.WithValue(ctx, jwt.InternalClaimData{}, jwt.InternalClaimData{
-			UserID: 1,
+			UserID: 2,
 			Role:   enum.RoleTypeUser,
 		})
 		c.SetRequest(c.Request().WithContext(ctx))
@@ -77,7 +77,7 @@ func TestTransaction(t *testing.T) {
 
 	t.Run("SuccessCreateOrder", func(t *testing.T) {
 		req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(`{
-			"tenorID": 3,
+			"tenorID": 2,
 			"contractNumber" : 123456789,
 			"onTheRoad": 100000000,
     		"adminFee": 1000000,
@@ -94,7 +94,7 @@ func TestTransaction(t *testing.T) {
 
 		ctx := c.Request().Context()
 		ctx = context.WithValue(ctx, jwt.InternalClaimData{}, jwt.InternalClaimData{
-			UserID: 3,
+			UserID: 2,
 			Role:   enum.RoleTypeUser,
 		})
 		c.SetRequest(c.Request().WithContext(ctx))
