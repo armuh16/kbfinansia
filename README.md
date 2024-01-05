@@ -24,7 +24,7 @@ Project ini menggunakan bahasa program golang & database mysql
     - Implementasi middleware autentikasi token JWT divalidasi sebelum mengizinkan akses ke rute yang dilindungi.
 
 2. Validasi Input:
-    - Implementasi menggunakan `c.Bind(reqData)` untuk membaca dan memproses input pengguna. Pastikan semua input divalidasi dengan benar untuk mencegah serangan seperti XSS dan injeksi.
+    - Implementasi menggunakan `c.Bind(reqData)` untuk membaca dan memproses input pengguna. Memastikan semua input divalidasi dengan benar untuk mencegah serangan seperti XSS dan injeksi.
 
 3. Pengelolaan Kesalahan:
     - Setiap log error harus memiliki ID unik, yang membantu dalam pelacakan dan debugging.
@@ -38,7 +38,7 @@ Project ini menggunakan bahasa program golang & database mysql
 ## Prinsip ACID
 
 1. Atomicity:
-    - Implementasi menggunakan transaksi (`tx := h.Db.Gorm.Begin()`) di beberapa endpoint, yang membantu memastikan atomicity. Pastikan semua operasi dalam satu transaksi berhasil atau gagal sebagai satu kesatuan.
+    - Implementasi menggunakan transaksi (`tx := h.Db.Gorm.Begin()`) di beberapa endpoint, yang membantu memastikan atomicity. Memastikan semua operasi dalam satu transaksi berhasil atau gagal sebagai satu kesatuan.
 
 2. Consistency:
     - Validasi input membantu menjaga konsistensi data.
@@ -54,4 +54,4 @@ Project ini menggunakan bahasa program golang & database mysql
 
 - Rate Limiting dan CORS: Implementasi menggunakan middleware untuk rate limiting dan CORS, untuk keamanan dan menghindari serangan DDoS.
 - Autentikasi dan Otorisasi: Implementasi logika otorisasi, terutama di rute yang sensitif, untuk memastikan bahwa pengguna hanya dapat mengakses data atau fungsi yang sesuai dengan peran mereka.
-- Pembaruan dan Patch: Implementasi dependensi, terutama framework dan pustaka keamanan, selalu diperbarui.
+- Pembaruan dan Patch: dependensi, framework dan pustaka keamanan, selalu terperbarui.
